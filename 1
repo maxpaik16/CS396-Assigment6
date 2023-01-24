@@ -1,0 +1,34 @@
+pybullet build time: Jan  6 2023 20:39:09
+Version = 4.1 Metal - 83
+Vendor = Apple
+Renderer = Apple M1
+b3Printf: Selected demo: Physics Server
+startThreads creating 1 threads.
+starting thread 0
+started thread 0 
+MotionThreadFunc thread started
+b3Printf: b3Warning[examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp,126]:
+
+b3Printf: expected a world element, continuing without it.
+Traceback (most recent call last):
+  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/simulate.py", line 9, in <module>
+    simulation.Run()
+  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/simulation.py", line 42, in Run
+    self.robot.Think()
+  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/robot.py", line 44, in Think
+    self.nn.Update()
+  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/pyrosim/neuralNetwork.py", line 34, in Update
+    self.neurons[nkey].Update_Sensor_Neuron()
+  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/pyrosim/neuron.py", line 56, in Update_Sensor_Neuron
+    self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
+  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/pyrosim/pyrosim.py", line 49, in Get_Touch_Sensor_Value_For_Link
+    desiredLinkIndex = linkNamesToIndices[linkName]
+KeyError: 'Link1'
+numActiveThreads = 0
+stopping threads
+Thread with taskId 0 exiting
+Thread TERMINATED
+destroy semaphore
+semaphore destroyed
+destroy main semaphore
+main semaphore destroyed
