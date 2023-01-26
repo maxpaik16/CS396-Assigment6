@@ -13,17 +13,11 @@ b3Printf: expected a world element, continuing without it.
 Traceback (most recent call last):
   File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/simulate.py", line 9, in <module>
     simulation.Run()
-  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/simulation.py", line 42, in Run
-    self.robot.Think()
-  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/robot.py", line 44, in Think
-    self.nn.Update()
-  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/pyrosim/neuralNetwork.py", line 34, in Update
-    self.neurons[nkey].Update_Sensor_Neuron()
-  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/pyrosim/neuron.py", line 56, in Update_Sensor_Neuron
-    self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
-  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/pyrosim/pyrosim.py", line 49, in Get_Touch_Sensor_Value_For_Link
-    desiredLinkIndex = linkNamesToIndices[linkName]
-KeyError: 'Link0'
+  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/simulation.py", line 43, in Run
+    self.robot.Act(i)
+  File "/Users/maxpaik/Documents/Northwestern/courses/CS396ArtificialLife/ludobots/CS396-Assigment6/robot.py", line 41, in Act
+    self.motors[jointName].Set_Value(desiredAngle)
+KeyError: b'Link-1_Link0'
 numActiveThreads = 0
 stopping threads
 Thread with taskId 0 exiting

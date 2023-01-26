@@ -16,6 +16,10 @@ class SOLUTION:
         self.weights -= 1
         self.myID = ID
         self.num_joints = random.randint(1, 10)
+        self.links_with_sensors = []
+        for i in range(1, self.num_joints + 2):
+            if random.random() > .5:
+                self.links_with_sensors.append(i)
 
     def Start_Simulation(self, directOrGUI):
         self.Create_World()
@@ -54,7 +58,8 @@ class SOLUTION:
         pyrosim.Send_Cube(
             name="Link1",
             pos=lastpos,
-            size=lastsize
+            size=lastsize,
+            color=1 in self.links_with_sensors
         )
 
         pyrosim.Send_Joint(
@@ -72,6 +77,7 @@ class SOLUTION:
                 name="Link{}".format(i),
                 pos=[newsize[0] / 2, 0, newsize[2] / 2],
                 size=newsize,
+                color=i in self.links_with_sensors
             )
 
             if i == self.num_joints + 1:
@@ -96,10 +102,9 @@ class SOLUTION:
         pyrosim.Start_NeuralNetwork('brain{}.nndf'.format(self.myID))
 
         num_sensors = 0
-        for i in range(self.num_joints + 1):
-            if random.random() > .5:
-                pyrosim.Send_Sensor_Neuron(name=num_sensors, linkName='Link{}'.format(i))
-                num_sensors += 1
+        for i in self.links_with_sensors:
+            pyrosim.Send_Sensor_Neuron(name=num_sensors, linkName='Link{}'.format(i))
+            num_sensors += 1
 
         for i in range(self.num_joints):
             pyrosim.Send_Motor_Neuron(name=i + num_sensors, jointName='Link{}_Link{}'.format(i - 1, i))
