@@ -49,7 +49,7 @@ class SOLUTION:
     def Create_Robot(self):
         pyrosim.Start_URDF("body.urdf")
 
-        lastsize = [random.random(), random.random(), random.random()]
+        lastsize = [.5 * random.random(), .5 * random.random(), .5 * random.random()]
         lastpos = [0, 0, lastsize[2] / 2]
         pyrosim.Send_Cube(
             name="Link1",
@@ -57,21 +57,35 @@ class SOLUTION:
             size=lastsize
         )
 
-        """for i in range(self.num_joints):
+        pyrosim.Send_Joint(
+            name="Link1_Link2",
+            parent="Link1",
+            child="Link2",
+            type="revolute",
+            position=[lastsize[0] / 2, 0, lastsize[2]],
+            jointAxis="0 1 0"
+        )
+
+        for i in range(2, self.num_joints + 2):
+            newsize = [.5 * random.random(), .5 * random.random(), .5 * random.random()]
+            pyrosim.Send_Cube(
+                name="Link{}".format(i),
+                pos=[newsize[0] / 2, 0, newsize[2] / 2],
+                size=newsize,
+            )
+
+            if i == self.num_joints + 1:
+                break
+
             # make joint
             pyrosim.Send_Joint(
                 name="Link{}_Link{}".format(i, i + 1),
                 parent="Link{}".format(i),
                 child="Link{}".format(i + 1),
                 type="revolute",
-                position=[0, -.5, 1],
-                jointAxis="1 0 0"
+                position=[newsize[0], 0, newsize[2]],
+                jointAxis="0 1 0"
             )
-
-
-            # make next link
-
-            pass"""
 
         pyrosim.End()
 
